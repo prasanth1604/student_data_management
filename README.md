@@ -21,4 +21,16 @@ Requirements For the project:
 
 Steps to run the project
 Step1: Clone the repository to your local pc
-git clone 
+git clone  https://github.com/prasanth1604/student_data_management.git
+
+Step2: Enter the directory
+cd studentmanagement
+
+Step3: Install required packages
+pip install django
+pip install pandas
+pip install openpyxl
+
+Step4: Run the project
+python manage.py runserver
+
