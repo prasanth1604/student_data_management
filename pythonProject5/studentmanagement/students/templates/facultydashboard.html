@@ -1,0 +1,92 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load filters %}
+{% block content %}
+    <div class="container-fluid mainCard p-0">
+        <div class="row no-gutters">
+            <div class="col-md-3 d-flex flex-column justify-content-center align-items-center bg-light border-right" style="height: 35vh; background-color: #FF6D33; color: white; text-align: center;">
+                <img src="{% static 'login.png' %}" alt="Faculty" class="img-fluid rounded-circle mt-5" style="height: 150px; width: 150px; border: 3px solid black; margin-bottom: 10px;">
+                    <div class="mt-3 text-center">
+                        <h4 class="profileText" style="font-family: 'Montserrat', sans-serif; font-weight: 200; font-size: large; color: #36454F;">{{ faculty.name }}</h4>
+                        <h5 class="profileText mt-2" style="font-family: 'Montserrat', sans-serif; font-weight: 200; font-size: large; color: #36454F;">{{ faculty.subjectName }} ({{ faculty.subjectCode }})</h5>
+                    </div>
+            </div>
+            <div class="col-md-9 p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Dashboard</h2>
+                    <div>
+                        <a href="{% url 'loginFaculty' %}" class="btn btn-outline-primary">Logout</a>
+                        <button id="addNew" class="btn btn-primary ml-2">Modify</button>
+
+                    </div>
+                </div>
+                <div class="progressCard mb-4">
+                    <form id="formAddNew" action="{% url 'facultydashboard' %}" method="POST" class="d-none">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="enrollmentNumber">Enrollment Number</label>
+                                <input type="text" class="form-control" id="enrollmentNumber" name="rol" placeholder="Roll Number" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="subjectCode">Subject Code</label>
+                                <input type="text" class="form-control" id="subjectCode" name="subCode" placeholder="XXX" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="assignment1">Assignment 1</label>
+                                <input type="text" class="form-control" id="assignment1" name="a1" placeholder="Assignment 1" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="assignment2">Assignment 2</label>
+                                <input type="text" class="form-control" id="assignment2" name="a2" placeholder="Assignment 2" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block">Save</button>
+                    </form>
+                </div>
+                <div class="progressCard">
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Roll No.</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Assignment 1</th>
+                                <th scope="col">Assignment 2</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for data in allStudent %}
+                                <tr>
+                                    <th scope="row">{{ data.rollNo }}</th>
+                                    <td>{{ data.name }}</td>
+                                    <td>{{ data.assignment1 }}</td>
+                                    <td>{{ data.assignment2 }}</td>
+                                    <td>{{ data.total }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <a href="{% url 'export_students_to_excel' %}" class="btn btn-primary mt-3">Export to Excel</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#addNew").click(function() {
+                $("#formAddNew").toggleClass("d-none");
+            });
+        });
+    </script>
+{% endblock %}
