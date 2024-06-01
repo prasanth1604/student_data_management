@@ -19,18 +19,18 @@ Requirements For the project:
 18.	ii.	XML Format
 
 
-Steps to run the project
-Step1: Clone the repository to your local pc
-'''git clone https://github.com/prasanth1604/student_data_management.git'''
+##Steps to run the project
+#Step1: Clone the repository to your local pc
+git clone https://github.com/prasanth1604/student_data_management.git
 
-Step2: Enter the directory
+#Step2: Enter the directory
 cd studentmanagement
 
-Step3: Install required packages
+#Step3: Install required packages
 pip install django
 pip install pandas
 pip install openpyxl
 
-Step4: Run the project
+#Step4: Run the project
 python manage.py runserver
 
