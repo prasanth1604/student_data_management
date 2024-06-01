@@ -44,7 +44,8 @@ ii. XML Format
 ### Step1: Clone the repository to your local 
 pc git clone https://github.com/prasanth1604/student_data_management.git
 
-### Step2: Enter the directory cd studentmanagement
+### Step2: Enter the directory 
+cd studentmanagement
 
 ### Step3: Install required packages 
 pip install django 
